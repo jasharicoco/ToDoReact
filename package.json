@@ -1,6 +1,6 @@
 {
-  "name": "labb3_todo_react",
-  "private": true,
+  "name": "ToDoReact",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://jasharicoco.github.io/ToDoReact",
