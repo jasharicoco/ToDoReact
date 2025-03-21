@@ -1,7 +1,8 @@
 /* Grundläggande sida med naturfärger */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #d4c064; /* Ljus sandbeige bakgrund */
+  /* background-color: #d4c064; /* Ljus sandbeige bakgrund */
+  background-image: url("../imgs/bg.png");
   margin: 0;
   padding: 0;
   display: flex;
