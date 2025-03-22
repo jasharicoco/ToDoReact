@@ -14,9 +14,7 @@ function TodoApp() {
 
   // Spara uppgifter till localStorage när tasks ändras
   useEffect(() => {
-    if (tasks.length > 0) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
   }, [tasks]);
   
 
@@ -62,7 +60,6 @@ function TodoApp() {
       <h1>To Do List</h1>
       <form onSubmit={saveTask} className="write-form">
         <input type="text" placeholder="Write a task..." ref={taskRef} />
-
         <select value={priority} onChange={(e) => setPriority(e.target.value || "Low")}>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>

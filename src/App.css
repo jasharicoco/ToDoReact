@@ -18,8 +18,8 @@ body {
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   width: auto;
-  min-width: 350px;
-  max-width: 400px;
+  min-width: 300px;
+  max-width: 320px;
   text-align: center;
   border: 1px solid #e0d9c6;
   background-image: linear-gradient(to bottom right, #f4e1b2, #fff8f0);
@@ -99,6 +99,11 @@ ul {
   list-style: none;
   padding: 0;
   margin-top: 30px;
+
+  
+  width: 100%; /* Gör så att listan tar upp full bredd av förälderelementet */
+  box-sizing: border-box; /* Se till att padding inte påverkar bredden */
+  overflow: hidden; /* Förhindrar att innehåll går utanför */
 }
 
 li {
@@ -113,6 +118,20 @@ li {
   align-items: center;
   position: relative;
   transition: all 0.3s ease;
+  cursor: pointer;
+
+  /* Förhindra att texten går utanför */
+  word-wrap: break-word; /* Radbrytning för längre ord vid behov */
+  overflow-wrap: break-word; /* Säkerställer att ord bryts vid behov */
+  white-space: normal; /* Säkerställer att texten inte klipps av */
+  width: 100%; /* Gör så att varje li-element inte överskrider förälderelementets bredd */
+  box-sizing: border-box; /* Se till att padding inte påverkar bredden */
+
+  /* Lägg till detta för att möjliggöra radbrytning och säkerställa att texten hålls inom */
+  white-space: normal; /* Tillåter radbrytning */
+  word-break: break-word; /* Bryter ord som är för långa för att passa */
+  text-align: left; /* Se till att texten är vänsterjusterad */
+
 
   /* Animation för att skapa en fade-in-effekt vid laddning */
   animation-name: fade-in-top;
@@ -164,12 +183,16 @@ li:hover {
   content: "";
   width: 10px;
   height: 100%;
-  background: #ccc679; /* Färg för medel prioritet */
-  position: absolute;
+  background: #ccc679;
+  /*Färgförmedelprioritet*/position: absolute;
   left: 0;
   top: 0;
   border-radius: 8px 0 0 8px;
   transition: width 0.3s ease-in-out;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  -ms-border-radius: 8px 0 0 8px;
+  -o-border-radius: 8px 0 0 8px;
 }
 
 .priority-high::before {
