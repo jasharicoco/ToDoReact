@@ -103,7 +103,6 @@ ul {
   
   width: 100%; /* Gör så att listan tar upp full bredd av förälderelementet */
   box-sizing: border-box; /* Se till att padding inte påverkar bredden */
-  overflow: hidden; /* Förhindrar att innehåll går utanför */
 }
 
 li {
