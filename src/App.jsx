@@ -1,10 +1,10 @@
 import './App.css'
-import ToDoInput from './components/ToDoInput'
+import ToDoApp from './components/ToDoApp'
 
 function App() {
   return (
     <>
-    <ToDoInput />
+    <ToDoApp />
     </>
   )
 }

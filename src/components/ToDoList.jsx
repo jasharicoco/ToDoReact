@@ -1,9 +1,20 @@
-import React from 'react'
+import ToDoItem from "./ToDoItem";
 
-function ToDoList() {
+function ToDoList({ tasks, toggleCompleted, deleteTask, handleTagClick }) {
   return (
-    <div>ToDoList</div>
-  )
+    <ul>
+      {tasks.map((task, index) => (
+        <ToDoItem 
+          key={index} 
+          task={task} 
+          index={index} 
+          toggleCompleted={toggleCompleted} 
+          deleteTask={deleteTask} 
+          handleTagClick={handleTagClick} 
+        />
+      ))}
+    </ul>
+  );
 }
 
-export default ToDoList
+export default ToDoList;
