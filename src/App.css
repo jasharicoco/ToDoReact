@@ -8,20 +8,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 /* Container för hela todo-appen */
 .todo-container {
-  background: #fff8f0; /* Ljus sandfärg för själva appen */
+  background: #fff8f0;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  width: auto;
+  min-width: 350px;
   max-width: 400px;
   text-align: center;
-  border: 1px solid #e0d9c6; /* Lätt sandfärgad kant */
-  background-image: linear-gradient(to bottom right, #f4e1b2, #fff8f0); /* Lätt gradient för en zen-känsla */
+  border: 1px solid #e0d9c6;
+  background-image: linear-gradient(to bottom right, #f4e1b2, #fff8f0);
 }
 
 /* Rubrik */
@@ -58,7 +59,7 @@ h1 {
 
 .filter-tag p {
   font-size: 14px;
-  color: #4b3f3a; /* Dov brun färg för rubriken */
+  color: #8c6e4f; /* Mörkare brun färg för filtertext */
 }
 
 /* Fokus på input-fält */
@@ -102,6 +103,7 @@ ul {
 
 li {
   background: #fdf9f0; /* Mycket ljus sandfärgad bakgrund för varje uppgift */
+  min-height: 40px;
   padding: 15px;
   margin: 15px 0;
   border-radius: 12px;
