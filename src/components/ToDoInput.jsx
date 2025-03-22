@@ -14,7 +14,7 @@ function TodoApp() {
 
   // Spara uppgifter till localStorage när tasks ändras
   useEffect(() => {
-    if (tasks.length > 0) {
+    if (tasks.length >= 0) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
     }
   }, [tasks]);
