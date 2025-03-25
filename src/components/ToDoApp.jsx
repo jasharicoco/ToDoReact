@@ -3,14 +3,8 @@ import ToDoInput from "./ToDoInput";
 import ToDoList from "./ToDoList";
 
 function ToDoApp() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []); // Hämtar tasks här från localStorage
   const [filterTag, setFilterTag] = useState(null);
-
-  // Hämta uppgifter från localStorage när sidan laddas
-  useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    setTasks(savedTasks);
-  }, []);
 
   // Spara uppgifter till localStorage när tasks ändras
   useEffect(() => {
