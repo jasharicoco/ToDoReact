@@ -1,21 +1,22 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ToDoInput from "./ToDoInput";
 import ToDoList from "./ToDoList";
 
 function ToDoApp() {
-  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []); // Hämtar tasks här från localStorage
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
   const [filterTag, setFilterTag] = useState(null);
+  const [filterCategory, setFilterCategory] = useState("All");
+  const categories = ["Work", "Personal", "Shopping", "Other"];
 
-  // Spara uppgifter till localStorage när tasks ändras
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const saveTask = (taskText, priority) => {
+  const saveTask = (taskText, priority, category) => {
     const hashtags = taskText.match(/#\w+/g) || [];
     const cleanText = taskText.replace(/#\w+/g, "").trim();
 
-    const newTask = { text: cleanText, priority, hashtags, completed: false };
+    const newTask = { text: cleanText, priority, category, hashtags, completed: false };
     setTasks([...tasks, newTask]);
   };
 
@@ -33,14 +34,32 @@ function ToDoApp() {
     setFilterTag(tag === filterTag ? null : tag);
   };
 
-  const displayedTasks = filterTag
-    ? tasks.filter((task) => task.hashtags.includes(filterTag))
-    : tasks;
+  const displayedTasks = tasks.filter((task) => {
+    return (
+      (!filterTag || task.hashtags.includes(filterTag)) &&
+      (filterCategory === "All" || task.category === filterCategory)
+    );
+  });
 
   return (
     <div className="todo-container">
       <h1>To Do List</h1>
-      <ToDoInput saveTask={saveTask} />
+      <ToDoInput saveTask={saveTask} categories={categories} />
+
+    {/* Filter by tag and category */}
+    <div className="write-form">
+      <select
+      value={filterCategory}
+      onChange={(e) => setFilterCategory(e.target.value)}
+      style={{ marginTop: "20px" }}
+      >
+        <option value="">Select Category</option>
+        <option value="All">All Categories</option>
+        {categories.map((cat) => (
+          <option key={cat} value={cat}>{cat}</option>
+        ))}
+      </select>
+    </div>
 
       {filterTag && (
         <div className="filter-tag">
