@@ -1,12 +1,14 @@
-function ToDoItem({ task, index, toggleCompleted, deleteTask, handleTagClick }) {
+function ToDoItem({ task, index, toggleCompleted, deleteTask, handleTagClick, handleCategoryClick }) {
   return (
     <li className={`priority-${task.priority.toLowerCase()} ${task.completed ? "completed" : ""}`}>
       <div className="task-content">
         <span className="task-text">{task.text}</span>
         <div className="hashtag-container">
-          {/* Kategorin visas här */}
-          <span className="category-tag">{task.category} </span>
-          {/* Hashtag visas här */}
+          {/* Kategorin är klickbar */}
+          <span onClick={() => handleCategoryClick(task.category)} className="category-tag">
+            {task.category}
+          </span>
+          {/* Klickbara hashtags */}
           {task.hashtags.map((tag, i) => (
             <span key={i} onClick={() => handleTagClick(tag)} className="hashtag">
               {tag}

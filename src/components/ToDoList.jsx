@@ -1,16 +1,17 @@
 import ToDoItem from "./ToDoItem";
 
-function ToDoList({ tasks, toggleCompleted, deleteTask, handleTagClick }) {
+function ToDoList({ tasks, toggleCompleted, deleteTask, handleTagClick, handleCategoryClick }) {
   return (
     <ul>
       {tasks.map((task, index) => (
-        <ToDoItem 
-          key={index} 
-          task={task} 
-          index={index} 
-          toggleCompleted={toggleCompleted} 
-          deleteTask={deleteTask} 
-          handleTagClick={handleTagClick} 
+        <ToDoItem
+          key={index}
+          task={task}
+          index={index}
+          toggleCompleted={toggleCompleted}
+          deleteTask={deleteTask}
+          handleTagClick={handleTagClick}
+          handleCategoryClick={handleCategoryClick}
         />
       ))}
     </ul>
@@ -18,3 +19,4 @@ function ToDoList({ tasks, toggleCompleted, deleteTask, handleTagClick }) {
 }
 
 export default ToDoList;
+

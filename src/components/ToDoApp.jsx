@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import ToDoInput from "./ToDoInput";
 import ToDoList from "./ToDoList";
-import { FaBriefcase, FaUser, FaShoppingCart, FaEllipsisH } from "react-icons/fa"; // Icons for categories
+import {
+  FaBriefcase,  // School, Work
+  FaUser,       // Personal, Family, Activities, Fitness, Hobbies, Education
+  FaHammer,     // Home, DIY, Projects
+  FaEllipsisH   // Other
+} from 'react-icons/fa';
 
 function ToDoApp() {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
   const [filterTag, setFilterTag] = useState(null);
   const [filterCategory, setFilterCategory] = useState("All");
 
-  // Define categories with corresponding icons
+  // Defining categories with corresponding icons
   const categories = [
-    { name: "Work", icon: <FaBriefcase /> },
-    { name: "Personal", icon: <FaUser /> },
-    { name: "Shopping", icon: <FaShoppingCart /> },
+    { name: "School", icon: <FaBriefcase /> },
+    { name: "Family", icon: <FaUser /> },
+    { name: "To do", icon: <FaHammer /> },
     { name: "Other", icon: <FaEllipsisH /> },
   ];
   
@@ -44,6 +49,10 @@ function ToDoApp() {
     setFilterTag(tag === filterTag ? null : tag);
   };
 
+  const handleCategoryClick = (category) => {
+    setFilterCategory(category === filterCategory ? "All" : category);
+  };
+
   const displayedTasks = tasks.filter((task) => {
     return (
       (!filterTag || task.hashtags.includes(filterTag)) &&
@@ -69,10 +78,17 @@ function ToDoApp() {
         ))}
       </div>
 
+      {filterCategory !== "All" && (
+        <div className="filter-tag">
+          <p>Showing tasks from category: <strong>{filterCategory}</strong></p>
+          <button onClick={() => setFilterCategory("All")}>All Categories</button>
+        </div>
+      )}
+
       {filterTag && (
         <div className="filter-tag">
-          <p>🔍 Showing tasks with: <strong>{filterTag}</strong></p>
-          <button onClick={() => setFilterTag(null)}>Show All</button>
+          <p>Showing tasks with hashtag: <strong>{filterTag}</strong></p>
+          <button onClick={() => setFilterTag(null)}>All Hashtags</button>
         </div>
       )}
 
@@ -81,6 +97,7 @@ function ToDoApp() {
         toggleCompleted={toggleCompleted} 
         deleteTask={deleteTask} 
         handleTagClick={handleTagClick} 
+        handleCategoryClick={handleCategoryClick} 
       />
     </div>
   );

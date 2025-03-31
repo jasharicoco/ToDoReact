@@ -1,7 +1,6 @@
 /* Grundläggande sida med naturfärger */
 body {
-  font-family: 'Arial', sans-serif;
-  /* background-color: #d4c064; /* Ljus sandbeige bakgrund */
+  font-family: 'Poppins', sans-serif;
   background-image: url("../imgs/bg.png");
   margin: 0;
   padding: 0;
@@ -23,11 +22,12 @@ body {
   text-align: center;
   border: 1px solid #e0d9c6;
   background-image: linear-gradient(to bottom right, #f4e1b2, #fff8f0);
+  overflow: visible;
 }
 
 /* Rubrik */
 h1 {
-  color: #4b3f3a; /* Dov brun färg för rubriken */
+  color: #4b3f3a;
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -44,58 +44,57 @@ h1 {
 .write-form button {
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #d1b89d; /* Sandfärgad kant */
+  border: 1px solid #d1b89d; 
   font-size: 16px;
   transition: border-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Filter tag buttons */
 .filter-tag button {
-  padding: 10px;
+  padding: 8px 12px;
+  background-color: #a8c79a;
   border-radius: 8px;
-  border: 1px solid #d1b89d; /*Sandfärgadkant*/
+  border: none;
   font-size: 12px;
-  transition: border-color 0.3s ease;
-  -webkit-transition: border-color 0.3s ease;
-  -moz-transition: border-color 0.3s ease;
-  -ms-transition: border-color 0.3s ease;
-  -o-transition: border-color 0.3s ease;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.filter-tag button:hover {
+  background-color: #8caf7c; /* Slightly darker */
+  font-weight: 500; /* Make text a bit bolder */
+  transform: scale(1.05); /* Subtle growth effect */
+}
+
+/* Filter tag text */
 .filter-tag p {
   font-size: 14px;
-  color: #8c6e4f; /* Mörkare brun färg för filtertext */
+  color: #7fa56e;
 }
 
 /* Fokus på input-fält */
 .write-form input:focus,
 .write-form select:focus {
-  border-color: #8c6e4f; /* Mörkare brun när i fokus */
+  border-color: #8c6e4f;
 }
 
 /* Button-styling */
 .write-form button {
-  background-color: #a8c79a; /* Ljus grön sandfärg */
+  background-color: #a8c79a;
   color: #fff;
   cursor: pointer;
   border: none;
   transition: background 0.3s ease;
+  -webkit-transition: background 0.3s ease;
+  -moz-transition: background 0.3s ease;
+  -ms-transition: background 0.3s ease;
+  -o-transition: background 0.3s ease;
 }
 
 .write-form button:hover {
-  background-color: #8c6e4f; /* Mörkare grön vid hover */
-}
-
-/* Button-styling */
-.filter-tag button {
-  background-color: #a8c79a; /* Ljus grön sandfärg */
-  color: #fff;
-  cursor: pointer;
-  border: none;
-  transition: background 0.3s ease;
-}
-
-.filter-tag button:hover {
-  background-color: #8c6e4f; /* Mörkare grön vid hover */
+  background-color: #8c6e4f;
 }
 
 /* Lista med uppgifter */
@@ -103,14 +102,24 @@ ul {
   list-style: none;
   padding: 0;
   margin-top: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 400px;  /* Limit the list size */
+  overflow-y: scroll;  /* Allow vertical scrolling - but also fucks the hover overflow up */
+  scrollbar-width: none;     /* For Firefox */
+}
 
-  
-  width: 100%; /* Gör så att listan tar upp full bredd av förälderelementet */
-  box-sizing: border-box; /* Se till att padding inte påverkar bredden */
+/* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+ul::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+ul {
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
 
 li {
-  background: #fdf9f0; /* Mycket ljus sandfärgad bakgrund för varje uppgift */
+  background: #fdf9f0;
   min-height: 40px;
   padding: 15px;
   margin: 15px 0;
@@ -122,41 +131,23 @@ li {
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  width: 100%;
+  box-sizing: border-box;
 
-  /* Förhindra att texten går utanför */
-  word-wrap: break-word; /* Radbrytning för längre ord vid behov */
-  overflow-wrap: break-word; /* Säkerställer att ord bryts vid behov */
-  white-space: normal; /* Säkerställer att texten inte klipps av */
-  width: 100%; /* Gör så att varje li-element inte överskrider förälderelementets bredd */
-  box-sizing: border-box; /* Se till att padding inte påverkar bredden */
-
-  /* Lägg till detta för att möjliggöra radbrytning och säkerställa att texten hålls inom */
-  white-space: normal; /* Tillåter radbrytning */
-  word-break: break-word; /* Bryter ord som är för långa för att passa */
-  text-align: left; /* Se till att texten är vänsterjusterad */
-
-
-  /* Animation för att skapa en fade-in-effekt vid laddning */
   animation-name: fade-in-top;
   animation-duration: 0.4s;
   animation-timing-function: linear;
-  animation-delay: 0s;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-fill-mode: none;
 }
 
-/* Hover-effekt för att skapa en starkare skugga runt uppgiften */
 li:hover {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.151);
   transform: scale(1.02);
-  -webkit-transform: scale(1.02);
-  -moz-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  -o-transform: scale(1.02);
 }
 
-/* Animation för att skapa en fade-in-effekt vid laddning */
+/* Animation for fade-in effect */
 @keyframes fade-in-top {
   0% {
     transform: translateY(-50px);
@@ -168,14 +159,13 @@ li:hover {
   }
 }
 
-
 /* Prioritetens färger */
 .priority-low::before {
   content: "";
   width: 10px;
   height: 100%;
   background: #a3cba3;
-  /*Ljusgrönförlågprioritet*/position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   border-radius: 8px 0 0 8px;
@@ -187,22 +177,18 @@ li:hover {
   width: 10px;
   height: 100%;
   background: #ccc679;
-  /*Färgförmedelprioritet*/position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   border-radius: 8px 0 0 8px;
   transition: width 0.3s ease-in-out;
-  -webkit-border-radius: 8px 0 0 8px;
-  -moz-border-radius: 8px 0 0 8px;
-  -ms-border-radius: 8px 0 0 8px;
-  -o-border-radius: 8px 0 0 8px;
 }
 
 .priority-high::before {
   content: "";
   width: 10px;
   height: 100%;
-  background: #d6796e; /* Röd-orange för hög prioritet */
+  background: #d6796e;
   position: absolute;
   left: 0;
   top: 0;
@@ -211,13 +197,15 @@ li:hover {
 }
 
 .priority-high:hover::before {
-  width: 15px; /* Increase width on hover */
+  width: 15px;
 }
+
 .priority-medium:hover::before {
-  width: 15px; /* Increase width on hover */
+  width: 15px;
 }
+
 .priority-low:hover::before {
-  width: 15px; /* Increase width on hover */
+  width: 15px;
 }
 
 /* Färdig uppgift (genomstruken med grå bakgrund) */
@@ -238,25 +226,24 @@ li:hover {
 .task-text {
   font-size: 18px;
   font-weight: 600;
-  color: #4b3f3a; /* Mörkbrun färg för uppgiftstext */
+  color: #4b3f3a;
   margin-left: 10px;
 }
 
 /* Hashtags */
 .hashtag-container {
   font-size: 14px;
-  color: #7c9c66; /* Grön färg för hashtags */
+  color: #7c9c66;
   cursor: pointer;
   margin-left: 10px;
 }
 
 .hashtag-container .hashtag {
   margin-right: 5px;
-  transition: color 0.3s ease;
 }
 
 .hashtag-container .hashtag:hover {
-  color: #5b7a4d; /* Mörkare grön vid hover */
+  color: #5b7a4d;
 }
 
 /* Knappar för att markera som färdig och ta bort uppgifter */
@@ -282,15 +269,15 @@ li:hover {
 }
 
 .complete-btn {
-  color: #a3cba3; /* Ljusgrön för färdig-knappen */
+  color: #a3cba3;
 }
 
 .delete-btn {
-  color: #d6796e; /* Röd-orange för ta bort-knappen */
+  color: #d6796e;
 }
 
 .delete-btn:hover {
-  color: #c45652; /* Mörkare röd vid hover */
+  color: #c45652;
 }
 
 /* Container for category and priority options */
@@ -307,29 +294,23 @@ li:hover {
   border-radius: 8px;
   font-size: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: #fdf9f0;
-  /*Lightsandcolor*/color: #4b3f3a;
-  /*Darkbrown*/text-align: center;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
+  background-color: #fff8e9;
+  color: #4b3f3a;
+  text-align: center;
 }
 
-/* Hover effect */
 .option:hover {
-  background-color: #e0d9c6;
+  background-color: #c5e0bf;
+    font-weight: 500; /* Make text a bit bolder */
+    transform: scale(1.05); /* Subtle growth effect */
 }
 
 /* Selected option */
 .option.selected {
-  background-color: #a8c79a; /* Light green sand color */
+  background-color: #a8c79a;
   color: #fff;
   font-weight: bold;
 }
-
-
 
 /* IKONER för kategorier */
 .category-icons {
