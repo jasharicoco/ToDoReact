@@ -52,9 +52,13 @@ h1 {
 .filter-tag button {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #d1b89d; /* Sandfärgad kant */
+  border: 1px solid #d1b89d; /*Sandfärgadkant*/
   font-size: 12px;
   transition: border-color 0.3s ease;
+  -webkit-transition: border-color 0.3s ease;
+  -moz-transition: border-color 0.3s ease;
+  -ms-transition: border-color 0.3s ease;
+  -o-transition: border-color 0.3s ease;
 }
 
 .filter-tag p {
@@ -287,4 +291,69 @@ li:hover {
 
 .delete-btn:hover {
   color: #c45652; /* Mörkare röd vid hover */
+}
+
+/* Container for category and priority options */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Individual option styling */
+.option {
+  padding: 4px 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fdf9f0;
+  /*Lightsandcolor*/color: #4b3f3a;
+  /*Darkbrown*/text-align: center;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+/* Hover effect */
+.option:hover {
+  background-color: #e0d9c6;
+}
+
+/* Selected option */
+.option.selected {
+  background-color: #a8c79a; /* Light green sand color */
+  color: #fff;
+  font-weight: bold;
+}
+
+
+
+/* IKONER för kategorier */
+.category-icons {
+  position: absolute;
+  color: #a8c79a;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-icon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.category-icon:hover {
+  transform: scale(1.2);
+  color: #769b64;
+}
+
+.category-icon.selected {
+  color: #59744c;
+  font-weight: bold;
 }

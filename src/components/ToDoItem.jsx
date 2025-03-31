@@ -5,7 +5,7 @@ function ToDoItem({ task, index, toggleCompleted, deleteTask, handleTagClick }) 
         <span className="task-text">{task.text}</span>
         <div className="hashtag-container">
           {/* Kategorin visas här */}
-          <span className="category-tag">{task.category}</span>
+          <span className="category-tag">{task.category} </span>
           {/* Hashtag visas här */}
           {task.hashtags.map((tag, i) => (
             <span key={i} onClick={() => handleTagClick(tag)} className="hashtag">

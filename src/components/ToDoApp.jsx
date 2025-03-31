@@ -1,12 +1,22 @@
 import { useState, useEffect } from "react";
 import ToDoInput from "./ToDoInput";
 import ToDoList from "./ToDoList";
+import { FaBriefcase, FaUser, FaShoppingCart, FaEllipsisH } from "react-icons/fa"; // Icons for categories
 
 function ToDoApp() {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
   const [filterTag, setFilterTag] = useState(null);
   const [filterCategory, setFilterCategory] = useState("All");
-  const categories = ["Work", "Personal", "Shopping", "Other"];
+
+  // Define categories with corresponding icons
+  const categories = [
+    { name: "Work", icon: <FaBriefcase /> },
+    { name: "Personal", icon: <FaUser /> },
+    { name: "Shopping", icon: <FaShoppingCart /> },
+    { name: "Other", icon: <FaEllipsisH /> },
+  ];
+  
+  const priorities = ["Low", "Medium", "High"];
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -44,22 +54,20 @@ function ToDoApp() {
   return (
     <div className="todo-container">
       <h1>To Do List</h1>
-      <ToDoInput saveTask={saveTask} categories={categories} />
+      <ToDoInput saveTask={saveTask} categories={categories.map(cat => cat.name)} priorities={priorities} />
 
-    {/* Filter by tag and category */}
-    <div className="write-form">
-      <select
-      value={filterCategory}
-      onChange={(e) => setFilterCategory(e.target.value)}
-      style={{ marginTop: "20px" }}
-      >
-        <option value="">Select Category</option>
-        <option value="All">All Categories</option>
+      {/* Category icons - positioned outside the main div */}
+      <div className="category-icons">
         {categories.map((cat) => (
-          <option key={cat} value={cat}>{cat}</option>
+          <span
+            key={cat.name}
+            className={`category-icon ${filterCategory === cat.name ? "selected" : ""}`}
+            onClick={() => setFilterCategory(filterCategory === cat.name ? "All" : cat.name)}
+          >
+            {cat.icon}
+          </span>
         ))}
-      </select>
-    </div>
+      </div>
 
       {filterTag && (
         <div className="filter-tag">

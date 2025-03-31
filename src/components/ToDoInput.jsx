@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
-function ToDoInput({ saveTask, categories }) {
+function ToDoInput({ saveTask, categories, priorities }) {
   const taskRef = useRef();
-  const [priority, setPriority] = useState("Low");
+  const [priority, setPriority] = useState(priorities[0]);
   const [category, setCategory] = useState(categories[0]);
 
   const handleSubmit = (e) => {
@@ -12,23 +12,38 @@ function ToDoInput({ saveTask, categories }) {
 
     saveTask(taskText, priority, category);
     taskRef.current.value = ""; // Clear input
-    setPriority("Low");
+    setPriority(priorities[0]);
     setCategory(categories[0]);
   };
 
   return (
     <form onSubmit={handleSubmit} className="write-form">
       <input type="text" placeholder="Write a task..." ref={taskRef} />
-      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+
+      <div className="options">
         {categories.map((cat) => (
-          <option key={cat} value={cat}>{cat}</option>
+          <span
+            key={cat}
+            className={`option ${category === cat ? 'selected' : ''}`}
+            onClick={() => setCategory(cat)}
+          >
+            {cat}
+          </span>
         ))}
-      </select>
+      </div>
+
+      <div className="options">
+        {priorities.map((level) => (
+          <span
+            key={level}
+            className={`option ${priority === level ? 'selected' : ''}`}
+            onClick={() => setPriority(level)}
+          >
+            {level}
+          </span>
+        ))}
+      </div>
+
       <button type="submit">Add</button>
     </form>
   );
