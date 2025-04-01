@@ -1,4 +1,4 @@
-/* Grundläggande sida med naturfärger */
+/* ===== Grundläggande sida och bakgrund ===== */
 body {
   font-family: 'Poppins', sans-serif;
   background-image: url("../imgs/bg.png");
@@ -10,7 +10,7 @@ body {
   height: 100vh;
 }
 
-/* Container för hela todo-appen */
+/* ===== Huvudcontainer för Todo-appen ===== */
 .todo-container {
   background: #fff8f0;
   padding: 30px;
@@ -25,14 +25,14 @@ body {
   overflow: visible;
 }
 
-/* Rubrik */
+/* ===== Rubrik ===== */
 h1 {
   color: #4b3f3a;
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Form för att lägga till uppgifter */
+/* ===== Formulär för att lägga till uppgifter ===== */
 .write-form {
   display: flex;
   flex-direction: column;
@@ -44,43 +44,19 @@ h1 {
 .write-form button {
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #d1b89d; 
+  border: 1px solid #d1b89d;
   font-size: 16px;
   transition: border-color 0.3s ease;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Filter tag buttons */
-.filter-tag button {
-  padding: 8px 12px;
-  background-color: #a8c79a;
-  border-radius: 8px;
-  border: none;
-  font-size: 12px;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.filter-tag button:hover {
-  background-color: #8caf7c; /* Slightly darker */
-  font-weight: 500; /* Make text a bit bolder */
-  transform: scale(1.05); /* Subtle growth effect */
-}
-
-/* Filter tag text */
-.filter-tag p {
-  font-size: 14px;
-  color: #7fa56e;
-}
-
-/* Fokus på input-fält */
+/* ===== Fokus på input-fält ===== */
 .write-form input:focus,
 .write-form select:focus {
   border-color: #8c6e4f;
 }
 
-/* Button-styling */
+/* ===== Knappar för formuläret ===== */
 .write-form button {
   background-color: #a8c79a;
   color: #fff;
@@ -94,14 +70,15 @@ h1 {
 }
 
 .write-form button:hover {
-  background-color: #8c6e4f;
+  background-color: #8caf7c; /* Slightly darker */
+  font-weight: 500; /* Make text a bit bolder */
+  transform: scale(1.05); /* Subtle growth effect */
 }
 
-/* Lista med uppgifter */
+/* ===== Lista med uppgifter ===== */
 ul {
   list-style: none;
   padding: 0;
-  margin-top: 30px;
   width: 100%;
   box-sizing: border-box;
   max-height: 400px;  /* Limit the list size */
@@ -109,7 +86,7 @@ ul {
   scrollbar-width: none;     /* For Firefox */
 }
 
-/* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+/* Dölj scrollbar i Webkit-baserade webbläsare */
 ul::-webkit-scrollbar {
   display: none; /* Hide scrollbar */
 }
@@ -118,6 +95,24 @@ ul {
   -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
 
+/* ===== Filter för uppgifter ===== */
+.filter-tag button {
+  padding: 8px 12px;
+  background-color: #a8c79a;
+  border-radius: 8px;
+  border: none;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-tag p {
+  font-size: 14px;
+  color: #7fa56e;
+}
+
+/* ===== Enskilda uppgifter i listan ===== */
 li {
   background: #fdf9f0;
   min-height: 40px;
@@ -147,7 +142,7 @@ li:hover {
   transform: scale(1.02);
 }
 
-/* Animation for fade-in effect */
+/* ===== Animationer ===== */
 @keyframes fade-in-top {
   0% {
     transform: translateY(-50px);
@@ -159,36 +154,13 @@ li:hover {
   }
 }
 
-/* Prioritetens färger */
-.priority-low::before {
-  content: "";
-  width: 10px;
-  height: 100%;
-  background: #a3cba3;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 8px 0 0 8px;
-  transition: width 0.3s ease-in-out;
-}
-
-.priority-medium::before {
-  content: "";
-  width: 10px;
-  height: 100%;
-  background: #ccc679;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 8px 0 0 8px;
-  transition: width 0.3s ease-in-out;
-}
-
+/* ===== Prioritetsfärger ===== */
+.priority-low::before,
+.priority-medium::before,
 .priority-high::before {
   content: "";
   width: 10px;
   height: 100%;
-  background: #d6796e;
   position: absolute;
   left: 0;
   top: 0;
@@ -196,26 +168,29 @@ li:hover {
   transition: width 0.3s ease-in-out;
 }
 
+.priority-low::before { background: #a3cba3; }
+.priority-medium::before { background: #ccc679; }
+.priority-high::before { background: #d6796e; }
+
+.priority-low:hover::before,
+.priority-medium:hover::before,
 .priority-high:hover::before {
   width: 15px;
 }
 
-.priority-medium:hover::before {
-  width: 15px;
-}
-
-.priority-low:hover::before {
-  width: 15px;
-}
-
-/* Färdig uppgift (genomstruken med grå bakgrund) */
+/* ===== Effekter för färdig uppgift ===== */
 .completed {
   background: #e4e4e4 !important;
-  text-decoration: line-through;
   opacity: 0.7;
+  transition: background 0.4s ease, opacity 0.4s ease;
 }
 
-/* Textinnehåll för uppgifter */
+.completed .task-text {
+  color: #888; /* Gråare text */
+  transition: color 0.4s ease, text-decoration 0.4s ease;
+}
+
+/* ===== Text och innehåll i uppgifter ===== */
 .task-content {
   flex-grow: 1;
   display: flex;
@@ -228,9 +203,11 @@ li:hover {
   font-weight: 600;
   color: #4b3f3a;
   margin-left: 10px;
+  text-align: left; /* Ensure text is aligned left */
+  width: 100%;
 }
 
-/* Hashtags */
+/* ===== Hashtags och kategorier ===== */
 .hashtag-container {
   font-size: 14px;
   color: #7c9c66;
@@ -246,41 +223,11 @@ li:hover {
   color: #5b7a4d;
 }
 
-/* Knappar för att markera som färdig och ta bort uppgifter */
-.task-buttons {
-  display: flex;
-  gap: 10px;
+.category-tag {
+  margin-right: 5px;
+  font-weight: bold;
 }
 
-.complete-btn,
-.delete-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 2px;
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-}
-
-.complete-btn:hover,
-.delete-btn:hover {
-  transform: scale(1.2);
-}
-
-.complete-btn {
-  color: #a3cba3;
-}
-
-.delete-btn {
-  color: #d6796e;
-}
-
-.delete-btn:hover {
-  color: #c45652;
-}
-
-/* Container for category and priority options */
 .options {
   display: flex;
   justify-content: center;
@@ -288,7 +235,7 @@ li:hover {
   flex-wrap: wrap;
 }
 
-/* Individual option styling */
+/* Category */
 .option {
   padding: 4px 6px;
   border-radius: 8px;
@@ -305,14 +252,40 @@ li:hover {
     transform: scale(1.05); /* Subtle growth effect */
 }
 
-/* Selected option */
+/* Selected category */
 .option.selected {
   background-color: #a8c79a;
   color: #fff;
   font-weight: bold;
 }
 
-/* IKONER för kategorier */
+/* ===== Knappar för att markera och ta bort ===== */
+.task-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.complete-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.complete-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.complete-btn { color: #a3cba3; }
+.delete-btn { color: #d6796e; }
+.delete-btn:hover { color: #c45652; }
+
+/* ===== Kategori-ikoner ===== */
 .category-icons {
   position: absolute;
   color: #a8c79a;
@@ -337,4 +310,84 @@ li:hover {
 .category-icon.selected {
   color: #59744c;
   font-weight: bold;
+}
+
+.category-tag {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+/* ===== Animationer ===== */
+@keyframes fade-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===== Media Queries ===== */
+@media screen and (max-width: 480px) {
+/* Minska padding på huvudcontainern */
+.todo-container {
+  padding: 10px;
+  min-width: 250px;
+  max-width: 280px;
+}
+
+/* Minska textstorlek i inputfält och knapp */
+.write-form input,
+.write-form select,
+.write-form button {
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Minska storlek på filter-knappar */
+.filter-tag button {
+  padding: 6px 10px;
+  font-size: 10px;
+}
+
+.filter-tag p {
+  font-size: 12px;
+  color: #7fa56e;
+}
+
+/* Minska storlek på listobjekt */
+li {
+  padding: 10px;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* Minska storlek på uppgiftstext */
+.task-text {
+  font-size: 14px;
+}
+
+/* Minska storlek på hashtag-text */
+.hashtag-container {
+  font-size: 12px;
+}
+
+/* Minska storlek på knappar för att markera/tar bort uppgifter */
+.complete-btn,
+.delete-btn {
+  font-size: 12px;
+  padding: 1px;
+}
+
+/* Minska storlek på kategoriikoner */
+.category-icons {
+  top: 10px;
+  right: 10px;
+}
+
+.category-icon {
+  font-size: 20px;
+}
 }
